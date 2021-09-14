@@ -16,7 +16,6 @@ class MainActionReducer : Reducer<Any, Any> {
         return state
     }
 }
-
 class MainResultReducer : Reducer<Any, Any> {
     override fun invoke(result: Any, state: Any): Any {
         return state

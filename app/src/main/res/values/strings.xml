@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">MyLibrary</string>
     <string name="some_error">Some error occurred</string>
+    <string name="text_add_new_author">Добавление нового автора</string>
+    <string name="text_name">Имя</string>
+    <string name="text_first_name">Имя</string>
+    <string name="text_last_name">Фамилия</string>
+    <string name="text_date_of_birth">День рождения</string>
+    <string name="text_save_author">Сохранить автора</string>
 </resources>

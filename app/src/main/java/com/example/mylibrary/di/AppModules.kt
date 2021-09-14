@@ -2,5 +2,8 @@ package com.example.mylibrary.di
 
 val appModules = listOf(
     navigationModule,
-    viewModelModule
+    viewModelModule,
+    databaseModule,
+    repositoryModule,
+    useCaseModule
 )

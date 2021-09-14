@@ -33,6 +33,8 @@ abstract class BaseFragment<VM : BaseViewModel<*, *, *>, VB : ViewBinding> : Fra
         )
     }
 
+    abstract fun subscribeOnState()
+
     private val statusBarHeight by lazy {
         return@lazy try {
             var result = 0
@@ -59,6 +61,7 @@ abstract class BaseFragment<VM : BaseViewModel<*, *, *>, VB : ViewBinding> : Fra
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        subscribeOnState()
         super.onViewCreated(view, savedInstanceState)
     }
 
