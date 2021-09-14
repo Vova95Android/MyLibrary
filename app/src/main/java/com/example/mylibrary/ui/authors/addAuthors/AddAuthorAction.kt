@@ -1,4 +1,4 @@
-package com.example.mylibrary.ui.addAuthors
+package com.example.mylibrary.ui.authors.addAuthors
 
 sealed class AddAuthorAction {
 

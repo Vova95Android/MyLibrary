@@ -1,11 +1,11 @@
-package com.example.mylibrary.ui.addAuthors.usecase
+package com.example.mylibrary.ui.authors.addAuthors.usecase
 
 import com.example.mylibrary.base.mvi.UseCase
 import com.example.mylibrary.data.model.AuthorModel
 import com.example.mylibrary.data.repository.AuthorRepository
-import com.example.mylibrary.ui.addAuthors.AddAuthorAction
-import com.example.mylibrary.ui.addAuthors.AddAuthorResult
-import com.example.mylibrary.ui.addAuthors.AddAuthorState
+import com.example.mylibrary.ui.authors.addAuthors.AddAuthorAction
+import com.example.mylibrary.ui.authors.addAuthors.AddAuthorResult
+import com.example.mylibrary.ui.authors.addAuthors.AddAuthorState
 import java.lang.Exception
 
 class SaveAuthorUseCase(

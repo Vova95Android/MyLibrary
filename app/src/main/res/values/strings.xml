@@ -10,4 +10,6 @@
     <string name="text_first_name_empty">Имя должно быть указанно</string>
     <string name="text_last_name_empty">Фамилия должна быть указана</string>
     <string name="text_date_of_birth_empty">Дата рождения должна быть указана</string>
+    <string name="text_author_list">Список авторов</string>
+    <string name="text_plus">+</string>
 </resources>

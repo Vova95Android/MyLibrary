@@ -9,7 +9,7 @@ interface AuthorDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveNewAuthor(authorEntity: AuthorEntity)
 
-    @Query("SELECT * FROM AuthorEntity ORDER BY id ASC")
+    @Query("SELECT * FROM AuthorEntity ORDER BY lastName ASC")
     fun getAllAuthors(): List<AuthorEntity>
 
     @Transaction

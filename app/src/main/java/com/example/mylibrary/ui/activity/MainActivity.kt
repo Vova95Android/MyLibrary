@@ -6,18 +6,17 @@ import com.example.mylibrary.base.BaseActivity
 import com.example.mylibrary.base.BaseFragment
 import com.example.mylibrary.navigation.Router
 import org.koin.android.ext.android.inject
-import com.example.mylibrary.di.globalRouter
-import com.example.mylibrary.ui.addAuthors.ScreenAddAuthors
+import com.example.mylibrary.ui.authors.authorList.ScreenAuthorList
 
 class MainActivity : BaseActivity<MainViewModel>() {
 
-    private val globalRouter by inject<Router>(globalRouter())
+    private val globalRouter by inject<Router>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         globalRouter.attach(supportFragmentManager)
-        globalRouter.replace(ScreenAddAuthors())
+        globalRouter.replace(ScreenAuthorList())
     }
 
     override fun onBackPressed() {

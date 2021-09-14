@@ -16,6 +16,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 abstract class BaseViewModel<Action, State, Result>(
+    val router: Router,
     private val actionReducer: Reducer<Action, State>,
     private val resultReducer: Reducer<Result, State>,
     private val useCaseSet: Set<UseCase<Action, State, Result>>,
@@ -41,8 +42,6 @@ abstract class BaseViewModel<Action, State, Result>(
             mutableStateLiveData.postValue(initialState)
             true
         }
-
-    lateinit var router: Router
 
     init {
 
