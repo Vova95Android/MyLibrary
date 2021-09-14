@@ -1,8 +1,9 @@
 package com.example.mylibrary.ui.addAuthors
 
 import com.example.mylibrary.base.BaseViewModel
-import com.example.mylibrary.base.mvi.Reducer
 import com.example.mylibrary.base.mvi.UseCase
+import com.example.mylibrary.ui.addAuthors.reducer.AddAuthorsActionReducer
+import com.example.mylibrary.ui.addAuthors.reducer.AddAuthorsResultReducer
 
 class AddAuthorsViewModel(
     useCaseSet: Set<UseCase<AddAuthorAction, AddAuthorState, AddAuthorResult>>
@@ -32,22 +33,5 @@ class AddAuthorsViewModel(
 
     fun saveAuthor() {
         action(AddAuthorAction.SaveAuthor)
-    }
-}
-
-class AddAuthorsActionReducer : Reducer<AddAuthorAction, AddAuthorState> {
-    override fun invoke(action: AddAuthorAction, state: AddAuthorState): AddAuthorState {
-        return when (action) {
-            is AddAuthorAction.DateOfBirthChanged -> state.copy(dateOfBirth = action.dateOfBirth)
-            is AddAuthorAction.FirstNameChanged -> state.copy(fistName = action.firstName)
-            is AddAuthorAction.LastNameChanged -> state.copy(lastName = action.lastName)
-            AddAuthorAction.SaveAuthor -> state
-        }
-    }
-}
-
-class AddAuthorsResultReducer : Reducer<AddAuthorResult, AddAuthorState> {
-    override fun invoke(result: AddAuthorResult, state: AddAuthorState): AddAuthorState {
-        return state
     }
 }

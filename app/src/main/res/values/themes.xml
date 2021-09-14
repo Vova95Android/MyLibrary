@@ -26,4 +26,8 @@
         <item name="android:textColor">@color/hint</item>
         <item name="android:textSize">13sp</item>
     </style>
+    <style name="TextError">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">13sp</item>
+    </style>
 </resources>

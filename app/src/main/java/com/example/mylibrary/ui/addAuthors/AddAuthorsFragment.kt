@@ -47,6 +47,9 @@ class AddAuthorsFragment : BaseFragment<AddAuthorsViewModel, FragmentAddAuthorsB
                 authorDateOfBirthText.isVisible = state.dateOfBirth.isNotEmpty()
                 authorFirstNameText.isVisible = state.fistName.isNotEmpty()
                 authorLastNameText.isVisible = state.lastName.isNotEmpty()
+                authorLastNameTextError.isVisible = state.lastNameIsEmpty
+                authorFirstNameTextError.isVisible = state.firstNameIsEmpty
+                authorDateOfBirthTextError.isVisible = state.dateOfBirthIsEmpty
             }
         }
     }

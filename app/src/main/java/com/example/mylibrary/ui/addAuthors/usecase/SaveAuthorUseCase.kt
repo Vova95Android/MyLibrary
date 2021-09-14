@@ -13,16 +13,24 @@ class SaveAuthorUseCase(
 ) : UseCase<AddAuthorAction, AddAuthorState, AddAuthorResult>() {
     override fun map(action: AddAuthorAction, state: AddAuthorState): AddAuthorResult {
         return try {
-            authorRepository.saveNewAuthor(
-                AuthorModel(
-                    fistName = state.fistName,
-                    lastName = state.lastName,
-                    dateOfBirth = state.dateOfBirth,
-                    genres = emptyList(),
-                    bookIds = emptyList()
+            if (state.fistName.isNotEmpty() && state.lastName.isNotEmpty() && state.dateOfBirth.isNotEmpty()) {
+                authorRepository.saveNewAuthor(
+                    AuthorModel(
+                        fistName = state.fistName,
+                        lastName = state.lastName,
+                        dateOfBirth = state.dateOfBirth,
+                        genres = emptyList(),
+                        bookIds = emptyList()
+                    )
                 )
-            )
-            AddAuthorResult.AuthorSaveSuccess
+                AddAuthorResult.AuthorSaveSuccess
+            } else {
+                AddAuthorResult.AuthorSaveError(
+                    firstNameIsEmpty = state.fistName.isEmpty(),
+                    lastNameIsEmpty = state.lastName.isEmpty(),
+                    dateOfBirthIsEmpty = state.dateOfBirth.isEmpty()
+                )
+            }
         } catch (e: Exception) {
             AddAuthorResult.AuthorSaveError(e.message)
         }
