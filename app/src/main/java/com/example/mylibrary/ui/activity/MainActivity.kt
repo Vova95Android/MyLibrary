@@ -7,6 +7,7 @@ import com.example.mylibrary.base.BaseFragment
 import com.example.mylibrary.navigation.Router
 import org.koin.android.ext.android.inject
 import com.example.mylibrary.ui.authors.authorList.ScreenAuthorList
+import com.example.mylibrary.ui.start.ScreenStart
 
 class MainActivity : BaseActivity<MainViewModel>() {
 
@@ -16,7 +17,12 @@ class MainActivity : BaseActivity<MainViewModel>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         globalRouter.attach(supportFragmentManager)
-        globalRouter.replace(ScreenAuthorList())
+        globalRouter.replace(ScreenStart())
+    }
+
+    override fun onDestroy() {
+        globalRouter.detach()
+        super.onDestroy()
     }
 
     override fun onBackPressed() {

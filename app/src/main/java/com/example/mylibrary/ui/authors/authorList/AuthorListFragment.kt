@@ -8,9 +8,11 @@ import com.example.mylibrary.ui.authors.authorList.adapter.AuthorListAdapter
 
 class AuthorListFragment : BaseFragment<AuthorListViewModel, FragmentAuthorListBinding>() {
 
-    private val adapter = AuthorListAdapter { ithem ->
+    private val adapter = AuthorListAdapter(
+        clickListener = {item->
 
-    }
+        }
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

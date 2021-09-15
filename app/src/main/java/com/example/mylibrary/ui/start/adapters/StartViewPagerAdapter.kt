@@ -9,13 +9,6 @@ class StartViewPagerAdapter (
 ) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = fragments.size
     override fun createFragment(position: Int): Fragment {
-
-        val fragment = fragments[position]
-        return fragment
+        return fragments[position]
     }
-
-    interface OnPagerClickListener {
-        fun onClick()
-    }
-
 }

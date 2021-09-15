@@ -20,23 +20,30 @@ class AuthorSelectDialog :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-
+            authorList.adapter = adapter
         }
     }
 
     override fun subscribeOnState() {
         viewModel.stateLiveData.observe(viewLifecycleOwner) { state ->
-
+            adapter.submitList(state.authors)
         }
     }
 
     override fun onDestroy() {
         val bundle = Bundle()
         bundle.putStringArray(
-            "dsg",
-            viewModel.stateLiveData.value?.authors?.map { it.id }?.toTypedArray() ?: emptyArray()
+            AUTHOR_SELECT_DIALOG_LIST,
+            viewModel.stateLiveData.value?.authors?.filter { it.isChecked }?.map { it.id }
+                ?.toTypedArray() ?: emptyArray()
         )
-        requireActivity().supportFragmentManager.setFragmentResult("sdfgh", bundle)
+        requireActivity().supportFragmentManager.setFragmentResult(AUTHOR_SELECT_DIALOG, bundle)
         super.onDestroy()
+    }
+
+    companion object {
+        const val AUTHOR_SELECT_DIALOG = "AuthorSelectDialog"
+        const val AUTHOR_SELECT_DIALOG_LIST = "AuthorSelectDialogList"
+        fun newInstance() = AuthorSelectDialog()
     }
 }
