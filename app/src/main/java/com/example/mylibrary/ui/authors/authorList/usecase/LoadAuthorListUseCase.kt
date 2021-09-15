@@ -5,7 +5,7 @@ import com.example.mylibrary.data.repository.AuthorRepository
 import com.example.mylibrary.ui.authors.authorList.AuthorListAction
 import com.example.mylibrary.ui.authors.authorList.AuthorListResult
 import com.example.mylibrary.ui.authors.authorList.AuthorListState
-import com.example.mylibrary.ui.authors.model.AuthorUI
+import com.example.mylibrary.ui.model.AuthorUI
 
 class LoadAuthorListUseCase(
     private val authorRepository: AuthorRepository

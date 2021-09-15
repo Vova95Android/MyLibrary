@@ -1,4 +1,4 @@
-package com.example.mylibrary.ui.authors.model
+package com.example.mylibrary.ui.model
 
 import com.example.mylibrary.data.model.AuthorModel
 import java.util.*
@@ -9,7 +9,8 @@ data class AuthorUI(
     val lastName: String,
     val dateOfBirth: String,
     val genres: List<String>,
-    val bookIds: List<String>
+    val bookIds: List<String>,
+    val isChecked: Boolean = false
 ) {
 
     fun toModel(): AuthorModel {

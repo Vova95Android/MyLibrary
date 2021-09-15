@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import com.example.mylibrary.base.BaseFragment
 import com.example.mylibrary.databinding.FragmentAddAuthorsBinding
+import java.util.*
 
 class AddAuthorsFragment : BaseFragment<AddAuthorsViewModel, FragmentAddAuthorsBinding>() {
 
@@ -15,7 +16,10 @@ class AddAuthorsFragment : BaseFragment<AddAuthorsViewModel, FragmentAddAuthorsB
         binding.apply {
             authorDateOfBirth.setOnClickListener {
                 val dateDialog = DatePickerDialog(requireContext())
-                dateDialog.setOnDateSetListener { view, year, month, dayOfMonth ->
+                val calendar = Calendar.getInstance()
+                calendar.set(1, 0, 1)
+                dateDialog.datePicker.minDate = calendar.timeInMillis
+                dateDialog.setOnDateSetListener { _, year, month, dayOfMonth ->
                     viewModel.setDateOfBirth(year, month, dayOfMonth)
                 }
                 dateDialog.show()

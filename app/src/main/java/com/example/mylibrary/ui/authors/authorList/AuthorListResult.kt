@@ -1,6 +1,6 @@
 package com.example.mylibrary.ui.authors.authorList
 
-import com.example.mylibrary.ui.authors.model.AuthorUI
+import com.example.mylibrary.ui.model.AuthorUI
 
 sealed class AuthorListResult {
 
