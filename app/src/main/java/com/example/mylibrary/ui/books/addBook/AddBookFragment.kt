@@ -3,6 +3,7 @@ package com.example.mylibrary.ui.books.addBook
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import com.example.mylibrary.R
 import com.example.mylibrary.base.BaseFragment
@@ -41,6 +42,9 @@ class AddBookFragment : BaseFragment<AddBookViewModel, FragmentAddBookBinding>()
                 state.authors.forEach { authors += "${it.lastName} ${it.fistName}\r\n" }
                 bookBookAuthors.text = authors
                 bookTitle.setImageResource(state.bookTitle ?: R.drawable.book_title_1)
+                bookBookNameTextError.isVisible = state.validateError.titleIsEmpty
+                bookDescriptionsTextError.isVisible = state.validateError.descriptionsIsEmpty
+                bookAuthorsTextError.isVisible = state.validateError.authorsIsEmpty
             }
             if (state.addBookSuccess) {
                 hideKeyboard()

@@ -15,9 +15,10 @@
     <string name="text_save_book">Сохранить книгу</string>
     <string name="text_add_new_book">Добавить новую книгу</string>
     <string name="text_book_descriptions">Описание книги</string>
-    <string name="text_descriptions_empty">Описание книги не должно быть пустым</string>
+    <string name="text_descriptions_empty">Описание книги не может быть пустым</string>
     <string name="text_book_name">Название книги</string>
-    <string name="text_book_name_empty">Название кного не должно быть пустым</string>
+    <string name="text_book_name_empty">Название книги не может быть пустым</string>
     <string name="text_book_authors">Авторы</string>
     <string name="text_book_list">Список книг</string>
+    <string name="text_author_empty">Список авторов не может быть пустым</string>
 </resources>

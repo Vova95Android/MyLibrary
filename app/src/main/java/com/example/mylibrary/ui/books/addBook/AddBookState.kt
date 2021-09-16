@@ -8,5 +8,12 @@ data class AddBookState(
     val bookName: String = "",
     val bookDescriptions: String = "",
     val bookTitle: Int? = null,
-    val addBookSuccess: Boolean = false
+    val addBookSuccess: Boolean = false,
+    val validateError: AddBooksValidateError = AddBooksValidateError()
+)
+
+data class AddBooksValidateError(
+    val titleIsEmpty: Boolean = false,
+    val descriptionsIsEmpty: Boolean = false,
+    val authorsIsEmpty: Boolean = false
 )

@@ -7,7 +7,8 @@ import com.example.mylibrary.ui.books.booksList.BookListState
 class BookListActionReducer : Reducer<BookListAction, BookListState> {
     override fun invoke(action: BookListAction, state: BookListState): BookListState {
         return when (action) {
-            BookListAction.GetBookList -> state.copy(isLoading = true)
+            is BookListAction.GetBookList -> state.copy(isLoading = true)
+            is BookListAction.FilterBooks -> state.copy(filterAuthorsId = action.authors)
         }
     }
 }

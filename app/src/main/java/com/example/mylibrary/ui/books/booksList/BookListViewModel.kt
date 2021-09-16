@@ -4,6 +4,7 @@ import com.example.mylibrary.base.BaseViewModel
 import com.example.mylibrary.base.mvi.UseCase
 import com.example.mylibrary.navigation.Router
 import com.example.mylibrary.ui.books.addBook.ScreenAddBook
+import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.ScreenAuthorSelect
 import com.example.mylibrary.ui.books.booksList.reducer.BookListActionReducer
 import com.example.mylibrary.ui.books.booksList.reducer.BookListResultReducer
 
@@ -25,4 +26,14 @@ class BookListViewModel(
     fun toAddBook() {
         router.replace(ScreenAddBook())
     }
+
+    fun toSelectAuthors() {
+        router.replace(ScreenAuthorSelect())
+    }
+
+    fun filterAsAuthorId(authors: List<String>) {
+        action(BookListAction.FilterBooks(authors))
+    }
+
+
 }

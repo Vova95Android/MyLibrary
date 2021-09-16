@@ -7,6 +7,9 @@ sealed class AddBookResult {
     data class AddBookAuthorsLoadError(val message: String?) : AddBookResult()
     object SaveNewBookSuccess : AddBookResult()
     data class SaveNewBookError(
-        val message: String?
+        val message: String? = "",
+        val titleIsEmpty: Boolean = false,
+        val descriptionsIsEmpty: Boolean = false,
+        val authorsIsEmpty: Boolean = false
     ) : AddBookResult()
 }
