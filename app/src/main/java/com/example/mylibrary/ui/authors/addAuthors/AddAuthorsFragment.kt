@@ -15,14 +15,7 @@ class AddAuthorsFragment : BaseFragment<AddAuthorsViewModel, FragmentAddAuthorsB
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             authorDateOfBirth.setOnClickListener {
-                val dateDialog = DatePickerDialog(requireContext())
-                val calendar = Calendar.getInstance()
-                calendar.set(1, 0, 1)
-                dateDialog.datePicker.minDate = calendar.timeInMillis
-                dateDialog.setOnDateSetListener { _, year, month, dayOfMonth ->
-                    viewModel.setDateOfBirth(year, month, dayOfMonth)
-                }
-                dateDialog.show()
+                showDateDialog()
             }
             authorFirstName.doOnTextChanged { text, _, _, _ ->
                 if (text != null) {
@@ -38,6 +31,17 @@ class AddAuthorsFragment : BaseFragment<AddAuthorsViewModel, FragmentAddAuthorsB
                 viewModel.saveAuthor()
             }
         }
+    }
+
+    private fun showDateDialog() {
+        val dateDialog = DatePickerDialog(requireContext())
+        val calendar = Calendar.getInstance()
+        calendar.set(1, 0, 1)
+        dateDialog.datePicker.minDate = calendar.timeInMillis
+        dateDialog.setOnDateSetListener { _, year, month, dayOfMonth ->
+            viewModel.setDateOfBirth(year, month, dayOfMonth)
+        }
+        dateDialog.show()
     }
 
     override fun subscribeOnState() {

@@ -7,10 +7,10 @@ import com.example.mylibrary.ui.books.addBook.ScreenAddBook
 import com.example.mylibrary.ui.books.booksList.reducer.BookListActionReducer
 import com.example.mylibrary.ui.books.booksList.reducer.BookListResultReducer
 
-class BookListViewModel (
+class BookListViewModel(
     useCaseSet: Set<UseCase<BookListAction, BookListState, BookListResult>>,
     router: Router
-): BaseViewModel<BookListAction, BookListState, BookListResult>(
+) : BaseViewModel<BookListAction, BookListState, BookListResult>(
     actionReducer = BookListActionReducer(),
     resultReducer = BookListResultReducer(),
     useCaseSet = useCaseSet,
@@ -18,7 +18,7 @@ class BookListViewModel (
     router = router
 ) {
 
-    fun loadBookList(){
+    fun loadBookList() {
         action(BookListAction.GetBookList)
     }
 

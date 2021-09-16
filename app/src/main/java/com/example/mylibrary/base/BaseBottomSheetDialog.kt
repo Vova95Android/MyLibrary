@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
-import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.example.mylibrary.R
 import com.example.mylibrary.ext.color
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.parameter.DefinitionParameters
@@ -53,9 +51,7 @@ abstract class BaseBottomSheetDialog<VM : BaseViewModel<*, *, *>, VB : ViewBindi
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return createBindingInstance(inflater, container).also { _binding = it }.root.apply {
-//            setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.background))
-        }
+        return createBindingInstance(inflater, container).also { _binding = it }.root
     }
 
     @CallSuper
@@ -92,18 +88,12 @@ abstract class BaseBottomSheetDialog<VM : BaseViewModel<*, *, *>, VB : ViewBindi
         jobs.forEach { job ->
             job.cancel()
         }
-        setProgressVisible(false)
         progressBar = null
         _binding = null
     }
 
     open fun onBackPressed(): Boolean? {
-        // return true if fragment needs to pop, false if not
         return true
-    }
-
-    fun launch(block: suspend CoroutineScope.() -> Unit) {
-        jobs.add(lifecycleScope.launchWhenStarted(block))
     }
 
     open fun showError(message: String?) {
@@ -111,30 +101,5 @@ abstract class BaseBottomSheetDialog<VM : BaseViewModel<*, *, *>, VB : ViewBindi
         Snackbar.make(view, message ?: getString(R.string.some_error), Snackbar.LENGTH_LONG)
             .setBackgroundTint(color(R.color.error))
             .show()
-    }
-
-    protected fun setProgressVisible(isLoading: Boolean) {
-        (requireActivity().window.decorView as ViewGroup).also { decorView ->
-            if (isLoading) {
-                decorView.addView(
-                    getProgressView(),
-                    ViewGroup.MarginLayoutParams(
-                        ViewGroup.MarginLayoutParams.MATCH_PARENT,
-                        ViewGroup.MarginLayoutParams.WRAP_CONTENT
-                    ).apply {
-                        setMargins(0, statusBarHeight, 0, 0)
-                    })
-            } else {
-                decorView.removeView(progressBar)
-            }
-        }
-    }
-
-    private fun getProgressView(): LinearProgressIndicator {
-        val progressBar = LinearProgressIndicator(requireContext()).apply {
-            isIndeterminate = true
-        }
-        this.progressBar = progressBar
-        return progressBar
     }
 }

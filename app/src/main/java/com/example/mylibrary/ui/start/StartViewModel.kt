@@ -9,7 +9,7 @@ import com.example.mylibrary.ui.start.reducer.StartResultReducer
 class StartViewModel(
     useCaseSet: Set<UseCase<StartAction, StartState, StartResult>>,
     router: Router
-): BaseViewModel<StartAction, StartState, StartResult>(
+) : BaseViewModel<StartAction, StartState, StartResult>(
     actionReducer = StartActionReducer(),
     resultReducer = StartResultReducer(),
     useCaseSet = useCaseSet,

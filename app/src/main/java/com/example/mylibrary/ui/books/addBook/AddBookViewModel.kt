@@ -7,10 +7,10 @@ import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.ScreenAuthorSel
 import com.example.mylibrary.ui.books.addBook.reducer.AddBookActionReducer
 import com.example.mylibrary.ui.books.addBook.reducer.AddBookResultReducer
 
-class AddBookViewModel (
+class AddBookViewModel(
     useCaseSet: Set<UseCase<AddBookAction, AddBookState, AddBookResult>>,
     router: Router
-): BaseViewModel<AddBookAction, AddBookState, AddBookResult>(
+) : BaseViewModel<AddBookAction, AddBookState, AddBookResult>(
     actionReducer = AddBookActionReducer(),
     resultReducer = AddBookResultReducer(),
     useCaseSet = useCaseSet,
@@ -20,9 +20,11 @@ class AddBookViewModel (
     fun setBookName(name: String) {
         action(AddBookAction.SetBookName(name))
     }
+
     fun setBookDescriptions(descriptions: String) {
         action(AddBookAction.SetBookDescriptions(descriptions))
     }
+
     fun setBookAuthorsId(ids: List<String>) {
         action(AddBookAction.SetBookAuthorsId(ids))
     }
@@ -35,4 +37,7 @@ class AddBookViewModel (
         action(AddBookAction.SetBookTitle(title))
     }
 
+    fun saveNewBook() {
+        action(AddBookAction.AddNewBook)
+    }
 }

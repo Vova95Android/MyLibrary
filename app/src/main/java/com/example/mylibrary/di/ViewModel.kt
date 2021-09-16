@@ -6,11 +6,12 @@ import com.example.mylibrary.ui.authors.addAuthors.usecase.SaveAuthorUseCase
 import com.example.mylibrary.ui.authors.authorList.AuthorListViewModel
 import com.example.mylibrary.ui.authors.authorList.usecase.LoadAuthorListUseCase
 import com.example.mylibrary.ui.books.addBook.AddBookViewModel
-import com.example.mylibrary.ui.books.addBook.dialogAddBook.usecase.AddNewBookUseCase
+import com.example.mylibrary.ui.books.addBook.usecase.AddNewBookUseCase
 import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.AuthorSelectViewModel
 import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.usecase.AuthorSelectLoadAuthorSelectUseCase
 import com.example.mylibrary.ui.books.addBook.usecase.AddBookLoadAuthorListUseCase
 import com.example.mylibrary.ui.books.booksList.BookListViewModel
+import com.example.mylibrary.ui.books.booksList.usecase.LoadBookListUseCase
 import com.example.mylibrary.ui.start.StartViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -18,14 +19,14 @@ import org.koin.dsl.module
 val viewModelModule = module {
 
     viewModel {
-        MainViewModel(get())
+        MainViewModel(get(globalRouter()))
     }
     viewModel {
         AddAuthorsViewModel(
             useCaseSet = setOf(
                 get<SaveAuthorUseCase>()
             ),
-            get()
+            get(authorsRouter())
         )
     }
     viewModel {
@@ -33,7 +34,7 @@ val viewModelModule = module {
             useCaseSet = setOf(
                 get<LoadAuthorListUseCase>(),
             ),
-            get()
+            get(authorsRouter())
         )
     }
     viewModel {
@@ -42,13 +43,15 @@ val viewModelModule = module {
                 get<AddBookLoadAuthorListUseCase>(),
                 get<AddNewBookUseCase>()
             ),
-            get()
+            get(booksRouter())
         )
     }
     viewModel {
         BookListViewModel(
-            useCaseSet = setOf(),
-            get()
+            useCaseSet = setOf(
+                get<LoadBookListUseCase>()
+            ),
+            get(booksRouter())
         )
     }
     viewModel {
@@ -56,13 +59,13 @@ val viewModelModule = module {
             useCaseSet = setOf(
                 get<AuthorSelectLoadAuthorSelectUseCase>()
             ),
-            get()
+            get(booksRouter())
         )
     }
     viewModel {
         StartViewModel(
             useCaseSet = setOf(),
-            get()
+            get(globalRouter())
         )
     }
 }

@@ -7,7 +7,7 @@ import com.example.mylibrary.ui.books.booksList.BookListState
 
 class BookListResultReducer : Reducer<BookListResult, BookListState> {
     override fun invoke(result: BookListResult, state: BookListState): BookListState {
-        return when(result){
+        return when (result) {
             is BookListResult.BookListLoadError -> state.copy(isLoading = false)
             is BookListResult.BookListLoadSuccess -> state.copy(
                 isLoading = false,

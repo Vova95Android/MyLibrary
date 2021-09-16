@@ -7,7 +7,7 @@ import com.example.mylibrary.ui.model.AuthorUI
 
 class AuthorSelectResultReducer : Reducer<AuthorSelectResult, AuthorSelectState> {
     override fun invoke(result: AuthorSelectResult, state: AuthorSelectState): AuthorSelectState {
-        return when(result){
+        return when (result) {
             is AuthorSelectResult.AuthorSelectLoadError -> state.copy(isLoading = false)
             is AuthorSelectResult.AuthorSelectLoadSuccess -> state.copy(
                 isLoading = false,

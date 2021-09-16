@@ -7,7 +7,7 @@ import com.example.mylibrary.ui.authors.addAuthors.ScreenAddAuthors
 import com.example.mylibrary.ui.authors.authorList.reducer.AuthorListsActionReducer
 import com.example.mylibrary.ui.authors.authorList.reducer.AuthorListsResultReducer
 
-class AuthorListViewModel (
+class AuthorListViewModel(
     useCaseSet: Set<UseCase<AuthorListAction, AuthorListState, AuthorListResult>>,
     router: Router
 ) : BaseViewModel<AuthorListAction, AuthorListState, AuthorListResult>(
@@ -21,7 +21,7 @@ class AuthorListViewModel (
         router.replace(ScreenAddAuthors())
     }
 
-    fun loadAuthorList(){
+    fun loadAuthorList() {
         action(AuthorListAction.LoadAuthors)
     }
 }

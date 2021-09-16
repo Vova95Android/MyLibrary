@@ -8,7 +8,7 @@ import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.AuthorSelectSta
 
 class AuthorSelectLoadAuthorSelectUseCase(
     private val authorRepository: AuthorRepository
-): UseCase<AuthorSelectAction, AuthorSelectState, AuthorSelectResult>() {
+) : UseCase<AuthorSelectAction, AuthorSelectState, AuthorSelectResult>() {
 
     override fun map(action: AuthorSelectAction, state: AuthorSelectState): AuthorSelectResult {
         return try {
@@ -16,12 +16,12 @@ class AuthorSelectLoadAuthorSelectUseCase(
             AuthorSelectResult.AuthorSelectLoadSuccess(
                 list
             )
-        } catch (e: Exception){
+        } catch (e: Exception) {
             AuthorSelectResult.AuthorSelectLoadError(e.message)
         }
     }
 
     override fun canHandle(action: AuthorSelectAction): Boolean {
-       return action is AuthorSelectAction.LoadAuthors
+        return action is AuthorSelectAction.LoadAuthors
     }
 }

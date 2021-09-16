@@ -24,7 +24,7 @@ data class BookUI(
         )
     }
 
-    companion object{
+    companion object {
         fun fromModel(book: BookModel): BookUI {
             return BookUI(
                 id = book.id,

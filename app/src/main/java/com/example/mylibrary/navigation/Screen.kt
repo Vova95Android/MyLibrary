@@ -1,13 +1,10 @@
 package com.example.mylibrary.navigation
 
-import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
-import com.example.mylibrary.R
 
 abstract class Screen {
 
-    @IdRes
-    open val container: Int = R.id.fragmentContainer
+    abstract val container: Int
 
     open val addToBackStack: Boolean = true
 

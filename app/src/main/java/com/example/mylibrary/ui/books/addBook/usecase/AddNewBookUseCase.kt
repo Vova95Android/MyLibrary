@@ -1,27 +1,34 @@
-package com.example.mylibrary.ui.books.addBook.dialogAddBook.usecase
+package com.example.mylibrary.ui.books.addBook.usecase
 
+import com.example.mylibrary.R
 import com.example.mylibrary.base.mvi.UseCase
+import com.example.mylibrary.data.model.BookModel
 import com.example.mylibrary.data.repository.AuthorRepository
+import com.example.mylibrary.data.repository.BookRepository
 import com.example.mylibrary.ui.books.addBook.AddBookAction
 import com.example.mylibrary.ui.books.addBook.AddBookResult
 import com.example.mylibrary.ui.books.addBook.AddBookState
+import java.util.*
+import kotlin.random.Random
 
 class AddNewBookUseCase(
-    private val authorRepository: AuthorRepository
+    private val bookRepository: BookRepository
 ) : UseCase<AddBookAction, AddBookState, AddBookResult>() {
 
     override fun map(action: AddBookAction, state: AddBookState): AddBookResult {
         return try {
-            val ids =
-                if (action is AddBookAction.SetBookAuthorsId) action.authors
-                else emptyList()
-            val list = authorRepository.getAuthorList().filter { author ->
-                val find = ids.firstOrNull { it == author.id }
-                find != null
-            }
-            AddBookResult.AddBookAuthorsLoadSuccess(list)
+            val bookModel = BookModel(
+                title = state.bookName,
+                descriptions = state.bookDescriptions,
+                titleIcon = state.bookTitle ?: R.drawable.book_title_1,
+                authorIds = state.authors.map { it.id },
+                genres = emptyList(),
+                rating = Random(Calendar.getInstance().timeInMillis).nextInt(0, 5)
+            )
+            bookRepository.saveNewBook(bookModel)
+            AddBookResult.SaveNewBookSuccess
         } catch (e: Exception) {
-            AddBookResult.AddBookAuthorsLoadError(e.message)
+            AddBookResult.SaveNewBookError(e.message)
         }
     }
 

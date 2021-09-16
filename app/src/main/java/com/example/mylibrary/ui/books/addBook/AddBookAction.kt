@@ -4,13 +4,15 @@ sealed class AddBookAction {
 
     data class SetBookName(
         val name: String
-    ): AddBookAction()
+    ) : AddBookAction()
+
     data class SetBookDescriptions(
         val descriptions: String
-    ): AddBookAction()
+    ) : AddBookAction()
+
     data class SetBookAuthorsId(
         val authors: List<String>
-    ): AddBookAction()
+    ) : AddBookAction()
 
     data class SetBookTitle(val title: Int) : AddBookAction()
     object AddNewBook : AddBookAction()

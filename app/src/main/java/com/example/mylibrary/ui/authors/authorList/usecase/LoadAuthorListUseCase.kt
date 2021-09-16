@@ -9,7 +9,7 @@ import com.example.mylibrary.ui.model.AuthorUI
 
 class LoadAuthorListUseCase(
     private val authorRepository: AuthorRepository
-): UseCase<AuthorListAction, AuthorListState, AuthorListResult>() {
+) : UseCase<AuthorListAction, AuthorListState, AuthorListResult>() {
 
     override fun map(action: AuthorListAction, state: AuthorListState): AuthorListResult {
         return try {
@@ -17,12 +17,12 @@ class LoadAuthorListUseCase(
             AuthorListResult.AuthorListLoadSuccess(
                 list.map { AuthorUI.fromModel(it) }
             )
-        } catch (e: Exception){
+        } catch (e: Exception) {
             AuthorListResult.AuthorListLoadError(e.message)
         }
     }
 
     override fun canHandle(action: AuthorListAction): Boolean {
-       return action is AuthorListAction.LoadAuthors
+        return action is AuthorListAction.LoadAuthors
     }
 }

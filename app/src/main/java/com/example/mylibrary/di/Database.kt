@@ -17,6 +17,10 @@ val databaseModule = module {
     single {
         get<AppDatabase>().authorDao()
     }
+
+    single {
+        get<AppDatabase>().bookDao()
+    }
 }
 
 const val DATABASE_NAME = "MyLibraryDatabase"

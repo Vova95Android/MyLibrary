@@ -31,7 +31,6 @@ abstract class BaseViewModel<Action, State, Result>(
     val errorObservable: LiveData<String>
         get() = mutableErrorLiveData
 
-    var sideEffect: List<LiveData<Result>> = emptyList()
     private val disposable = CompositeDisposable()
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -42,11 +41,6 @@ abstract class BaseViewModel<Action, State, Result>(
             mutableStateLiveData.postValue(initialState)
             true
         }
-
-    init {
-
-        sideEffect = useCaseSet.map { it.sideEffectLiveData }
-    }
 
     fun action(action: Action) {
         val state = actionReducer(action, mutableStateLiveData.value ?: initialState)

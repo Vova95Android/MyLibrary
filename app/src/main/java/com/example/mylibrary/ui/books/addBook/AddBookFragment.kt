@@ -2,6 +2,7 @@ package com.example.mylibrary.ui.books.addBook
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doOnTextChanged
 import com.example.mylibrary.R
 import com.example.mylibrary.base.BaseFragment
@@ -24,6 +25,9 @@ class AddBookFragment : BaseFragment<AddBookViewModel, FragmentAddBookBinding>()
             bookBookAuthors.setOnClickListener {
                 viewModel.toSelectAuthors()
             }
+            buttonSaveBook.setOnClickListener {
+                viewModel.saveNewBook()
+            }
         }
         viewModel.setBookTitle(getRandomTitle())
         fragmentResultListener()
@@ -35,7 +39,7 @@ class AddBookFragment : BaseFragment<AddBookViewModel, FragmentAddBookBinding>()
                 var authors = ""
                 state.authors.forEach { authors += "${it.lastName} ${it.fistName}\r\n" }
                 bookBookAuthors.text = authors
-                bookTitle.setImageResource(state.bookTitle?: R.drawable.book_title_1)
+                bookTitle.setImageResource(state.bookTitle ?: R.drawable.book_title_1)
             }
         }
     }
@@ -55,13 +59,13 @@ class AddBookFragment : BaseFragment<AddBookViewModel, FragmentAddBookBinding>()
         fun newInstance() = AddBookFragment()
     }
 
-    private fun getRandomTitle(): Int{
-        return when(Random(Calendar.getInstance().timeInMillis).nextInt(1,5)){
-            1-> R.drawable.book_title_1
-            2-> R.drawable.book_title_2
-            3-> R.drawable.book_title_3
-            4-> R.drawable.book_title_4
-            else-> R.drawable.book_title_5
+    private fun getRandomTitle(): Int {
+        return when (Random(Calendar.getInstance().timeInMillis).nextInt(1, 5)) {
+            1 -> R.drawable.book_title_1
+            2 -> R.drawable.book_title_2
+            3 -> R.drawable.book_title_3
+            4 -> R.drawable.book_title_4
+            else -> R.drawable.book_title_5
         }
     }
 }

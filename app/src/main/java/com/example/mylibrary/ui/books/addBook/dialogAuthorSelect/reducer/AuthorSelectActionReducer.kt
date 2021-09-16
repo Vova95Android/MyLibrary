@@ -6,7 +6,7 @@ import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.AuthorSelectSta
 
 class AuthorSelectActionReducer : Reducer<AuthorSelectAction, AuthorSelectState> {
     override fun invoke(action: AuthorSelectAction, state: AuthorSelectState): AuthorSelectState {
-        return when(action){
+        return when (action) {
             is AuthorSelectAction.LoadAuthors -> state.copy(isLoading = true)
             is AuthorSelectAction.AuthorClicks -> state.copy(
                 authors = state.authors.map {

@@ -6,9 +6,9 @@ sealed class AuthorSelectResult {
 
     data class AuthorSelectLoadSuccess(
         val authors: List<AuthorModel>
-    ): AuthorSelectResult()
+    ) : AuthorSelectResult()
 
     data class AuthorSelectLoadError(
         val message: String?
-    ): AuthorSelectResult()
+    ) : AuthorSelectResult()
 }

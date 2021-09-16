@@ -7,10 +7,10 @@ import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.reducer.AuthorS
 import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.reducer.AuthorSelectResultReducer
 import com.example.mylibrary.ui.model.AuthorUI
 
-class AuthorSelectViewModel (
+class AuthorSelectViewModel(
     useCaseSet: Set<UseCase<AuthorSelectAction, AuthorSelectState, AuthorSelectResult>>,
     router: Router
-): BaseViewModel<AuthorSelectAction, AuthorSelectState, AuthorSelectResult>(
+) : BaseViewModel<AuthorSelectAction, AuthorSelectState, AuthorSelectResult>(
     actionReducer = AuthorSelectActionReducer(),
     resultReducer = AuthorSelectResultReducer(),
     useCaseSet = useCaseSet,
@@ -24,5 +24,4 @@ class AuthorSelectViewModel (
     init {
         action(AuthorSelectAction.LoadAuthors)
     }
-
 }
