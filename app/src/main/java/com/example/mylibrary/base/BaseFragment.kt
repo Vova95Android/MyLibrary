@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.mylibrary.R
 import com.example.mylibrary.ext.color
-import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.parameter.DefinitionParameters
@@ -29,21 +28,6 @@ abstract class BaseFragment<VM : BaseViewModel<*, *, *>, VB : ViewBinding> : Fra
     }
 
     abstract fun subscribeOnState()
-
-    private val statusBarHeight by lazy {
-        return@lazy try {
-            var result = 0
-            val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-            if (resourceId > 0) {
-                result = resources.getDimensionPixelSize(resourceId)
-            }
-            result
-        } catch (exc: Exception) {
-            0
-        }
-    }
-
-    private var progressBar: LinearProgressIndicator? = null
 
     protected val binding get() = _binding!!
 
@@ -83,7 +67,6 @@ abstract class BaseFragment<VM : BaseViewModel<*, *, *>, VB : ViewBinding> : Fra
 
     override fun onDestroyView() {
         super.onDestroyView()
-        progressBar = null
         _binding = null
     }
 
