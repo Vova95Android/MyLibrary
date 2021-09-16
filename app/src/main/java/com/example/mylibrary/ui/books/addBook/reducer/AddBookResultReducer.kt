@@ -14,7 +14,10 @@ class AddBookResultReducer : Reducer<AddBookResult, AddBookState> {
                 authors = result.authors.map { AuthorUI.fromModel(it) }
             )
             is AddBookResult.SaveNewBookError -> state.copy(isLoading = false)
-            is AddBookResult.SaveNewBookSuccess -> state.copy(isLoading = false)
+            is AddBookResult.SaveNewBookSuccess -> state.copy(
+                isLoading = false,
+                addBookSuccess = true
+            )
         }
     }
 }

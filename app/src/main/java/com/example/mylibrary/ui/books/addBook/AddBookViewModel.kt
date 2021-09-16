@@ -40,4 +40,8 @@ class AddBookViewModel(
     fun saveNewBook() {
         action(AddBookAction.AddNewBook)
     }
+
+    fun pop() {
+        router.pop()
+    }
 }

@@ -7,6 +7,7 @@ import androidx.core.widget.doOnTextChanged
 import com.example.mylibrary.R
 import com.example.mylibrary.base.BaseFragment
 import com.example.mylibrary.databinding.FragmentAddBookBinding
+import com.example.mylibrary.ext.hideKeyboard
 import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.AuthorSelectDialog
 import java.util.*
 import kotlin.random.Random
@@ -40,6 +41,10 @@ class AddBookFragment : BaseFragment<AddBookViewModel, FragmentAddBookBinding>()
                 state.authors.forEach { authors += "${it.lastName} ${it.fistName}\r\n" }
                 bookBookAuthors.text = authors
                 bookTitle.setImageResource(state.bookTitle ?: R.drawable.book_title_1)
+            }
+            if (state.addBookSuccess) {
+                hideKeyboard()
+                viewModel.pop()
             }
         }
     }

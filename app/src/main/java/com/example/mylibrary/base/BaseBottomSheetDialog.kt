@@ -11,7 +11,6 @@ import com.example.mylibrary.ext.color
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Job
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.parameter.DefinitionParameters
 import org.koin.core.parameter.emptyParametersHolder
@@ -20,8 +19,6 @@ import kotlin.reflect.KClass
 
 abstract class BaseBottomSheetDialog<VM : BaseViewModel<*, *, *>, VB : ViewBinding>: BottomSheetDialogFragment(){
     private var _binding: VB? = null
-
-    private val jobs = mutableListOf<Job>()
 
     protected open val viewModel: VM by lazy {
         getViewModel(
@@ -85,9 +82,6 @@ abstract class BaseBottomSheetDialog<VM : BaseViewModel<*, *, *>, VB : ViewBindi
 
     override fun onDestroyView() {
         super.onDestroyView()
-        jobs.forEach { job ->
-            job.cancel()
-        }
         progressBar = null
         _binding = null
     }

@@ -37,8 +37,4 @@ class BookListFragment : BaseFragment<BookListViewModel, FragmentBookListBinding
             adapter.submitList(state.books)
         }
     }
-
-    companion object {
-        fun newInstance() = BookListFragment()
-    }
 }

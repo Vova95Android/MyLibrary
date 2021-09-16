@@ -36,12 +36,8 @@ class StartFragment : BaseFragment<StartViewModel, FragmentStartBinding>() {
     }
 
     override fun onBackPressed(): Boolean {
-        val fragment = viewPagerAdapter.getCurrentFragment()
+        val fragment = viewPagerAdapter.getCurrentFragment(binding.startViewPager.currentItem)
         return fragment.onBackPressed()
-    }
-
-    companion object {
-        fun newInstance() = StartFragment()
     }
 }
 

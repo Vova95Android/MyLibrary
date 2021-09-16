@@ -7,5 +7,6 @@ data class AddBookState(
     val authors: List<AuthorUI> = emptyList(),
     val bookName: String = "",
     val bookDescriptions: String = "",
-    val bookTitle: Int? = null
+    val bookTitle: Int? = null,
+    val addBookSuccess: Boolean = false
 )

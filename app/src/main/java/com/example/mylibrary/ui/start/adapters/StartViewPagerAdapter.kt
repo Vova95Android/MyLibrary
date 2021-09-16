@@ -8,16 +8,12 @@ class StartViewPagerAdapter(
     fragment: Fragment,
     private val fragments: List<BackPressed>
 ) : FragmentStateAdapter(fragment) {
-    private var currentPositions = 0
 
     override fun getItemCount(): Int = fragments.size
 
     override fun createFragment(position: Int): Fragment {
-        currentPositions = position
         return fragments[position]
     }
 
-    fun getCurrentFragment(): BackPressed {
-        return fragments[currentPositions]
-    }
+    fun getCurrentFragment(currentPositions: Int): BackPressed = fragments[currentPositions]
 }
