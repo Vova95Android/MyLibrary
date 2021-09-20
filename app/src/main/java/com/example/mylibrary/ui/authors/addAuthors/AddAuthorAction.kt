@@ -14,5 +14,9 @@ sealed class AddAuthorAction {
         val dateOfBirth: String
     ) : AddAuthorAction()
 
+    data class AddNewGenre(
+        val name: String
+    ) : AddAuthorAction()
+
     object SaveAuthor : AddAuthorAction()
 }

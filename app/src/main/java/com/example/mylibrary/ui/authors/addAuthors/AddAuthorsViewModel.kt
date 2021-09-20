@@ -41,4 +41,8 @@ class AddAuthorsViewModel(
     fun pop() {
         router.pop()
     }
+
+    fun addGenres(name: String) {
+        action(AddAuthorAction.AddNewGenre(name))
+    }
 }

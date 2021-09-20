@@ -16,7 +16,7 @@ class AuthorListFragment : BaseFragment<AuthorListViewModel, FragmentAuthorListB
 
     private val adapter = AuthorListAdapter(
         clickListener = { item ->
-
+            viewModel.toDetailAuthor(item.id)
         }
     )
 

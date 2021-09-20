@@ -7,6 +7,7 @@ import com.example.mylibrary.ui.books.addBook.ScreenAddBook
 import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.ScreenAuthorSelect
 import com.example.mylibrary.ui.books.booksList.reducer.BookListActionReducer
 import com.example.mylibrary.ui.books.booksList.reducer.BookListResultReducer
+import com.example.mylibrary.ui.books.detailBook.ScreenDetailBook
 
 class BookListViewModel(
     useCaseSet: Set<UseCase<BookListAction, BookListState, BookListResult>>,
@@ -33,6 +34,10 @@ class BookListViewModel(
 
     fun filterAsAuthorId(authors: List<String>) {
         action(BookListAction.FilterBooks(authors))
+    }
+
+    fun toDetailBook(bookId: String) {
+        router.replace(ScreenDetailBook(bookId))
     }
 
 

@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.parameter.DefinitionParameters
 import org.koin.core.parameter.emptyParametersHolder
+import org.koin.core.parameter.parametersOf
 import java.lang.reflect.ParameterizedType
 import kotlin.reflect.KClass
 
@@ -23,7 +24,9 @@ abstract class BaseFragment<VM : BaseViewModel<*, *, *>, VB : ViewBinding> : Fra
     protected open val viewModel: VM by lazy {
         getViewModel(
             clazz = viewModelKClass(),
-            parameters = parameters()
+            parameters = {
+                parametersOf(getParameters())
+            }
         )
     }
 
@@ -42,9 +45,7 @@ abstract class BaseFragment<VM : BaseViewModel<*, *, *>, VB : ViewBinding> : Fra
         super.onViewCreated(view, savedInstanceState)
     }
 
-    open fun parameters(): () -> DefinitionParameters = {
-        emptyParametersHolder()
-    }
+    open fun getParameters(): Any? = null
 
     @Suppress("UNCHECKED_CAST")
     private fun viewModelKClass(): KClass<VM> {

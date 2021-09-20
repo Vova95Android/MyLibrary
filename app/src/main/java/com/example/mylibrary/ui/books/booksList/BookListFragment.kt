@@ -2,20 +2,15 @@ package com.example.mylibrary.ui.books.booksList
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
-import com.example.mylibrary.R
 import com.example.mylibrary.base.BaseFragment
 import com.example.mylibrary.databinding.FragmentBookListBinding
-import com.example.mylibrary.di.booksRouter
-import com.example.mylibrary.navigation.Router
 import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.AuthorSelectDialog
 import com.example.mylibrary.ui.books.booksList.adapter.BookListAdapter
-import org.koin.android.ext.android.inject
 
 class BookListFragment : BaseFragment<BookListViewModel, FragmentBookListBinding>() {
 
     private val adapter = BookListAdapter {
-
+        viewModel.toDetailBook(it.id)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

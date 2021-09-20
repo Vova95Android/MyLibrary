@@ -21,4 +21,7 @@
     <string name="text_book_authors">Авторы</string>
     <string name="text_book_list">Список книг</string>
     <string name="text_author_empty">Список авторов не может быть пустым</string>
+    <string name="text_authors">Авторы</string>
+    <string name="add_ganres">Добавить жанр</string>
+    <string name="text_ganres">Жанры</string>
 </resources>

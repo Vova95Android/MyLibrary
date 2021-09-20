@@ -3,6 +3,7 @@ package com.example.mylibrary.ui.authors.addAuthors.reducer
 import com.example.mylibrary.base.mvi.Reducer
 import com.example.mylibrary.ui.authors.addAuthors.AddAuthorAction
 import com.example.mylibrary.ui.authors.addAuthors.AddAuthorState
+import com.example.mylibrary.ui.authors.addAuthors.adapter.GenresItem
 
 class AddAuthorsActionReducer : Reducer<AddAuthorAction, AddAuthorState> {
     override fun invoke(action: AddAuthorAction, state: AddAuthorState): AddAuthorState {
@@ -26,6 +27,9 @@ class AddAuthorsActionReducer : Reducer<AddAuthorAction, AddAuthorState> {
                 )
             }
             is AddAuthorAction.SaveAuthor -> state.copy(isLoading = true)
+            is AddAuthorAction.AddNewGenre -> state.copy(
+                genres = state.genres.plus(GenresItem(name = action.name))
+            )
         }
     }
 }

@@ -8,9 +8,18 @@ import androidx.core.widget.doOnTextChanged
 import com.example.mylibrary.base.BaseFragment
 import com.example.mylibrary.databinding.FragmentAddAuthorsBinding
 import com.example.mylibrary.ext.hideKeyboard
+import com.example.mylibrary.ui.authors.addAuthors.adapter.GenresAdapter
+import com.example.mylibrary.ui.authors.addAuthors.adapter.GenresItem
 import java.util.*
 
 class AddAuthorsFragment : BaseFragment<AddAuthorsViewModel, FragmentAddAuthorsBinding>() {
+
+    private val adapter = GenresAdapter {
+        if (!it.name.isNullOrEmpty()) {
+            viewModel.addGenres(it.name)
+            hideKeyboard()
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,6 +40,7 @@ class AddAuthorsFragment : BaseFragment<AddAuthorsViewModel, FragmentAddAuthorsB
             buttonSaveAuthor.setOnClickListener {
                 viewModel.saveAuthor()
             }
+            addGanresList.adapter = adapter
         }
     }
 
@@ -55,6 +65,7 @@ class AddAuthorsFragment : BaseFragment<AddAuthorsViewModel, FragmentAddAuthorsB
                 authorLastNameTextError.isVisible = state.validateError.lastNameIsEmpty
                 authorFirstNameTextError.isVisible = state.validateError.firstNameIsEmpty
                 authorDateOfBirthTextError.isVisible = state.validateError.dateOfBirthIsEmpty
+                adapter.submitList(state.genres.plus(GenresItem(newGenre = true)))
                 if (state.authorSaveSuccess) {
                     hideKeyboard()
                     viewModel.pop()

@@ -5,6 +5,8 @@ import com.example.mylibrary.ui.authors.addAuthors.AddAuthorsViewModel
 import com.example.mylibrary.ui.authors.addAuthors.usecase.SaveAuthorUseCase
 import com.example.mylibrary.ui.authors.authorList.AuthorListViewModel
 import com.example.mylibrary.ui.authors.authorList.usecase.LoadAuthorListUseCase
+import com.example.mylibrary.ui.authors.detailAuthor.DetailAuthorViewModel
+import com.example.mylibrary.ui.authors.detailAuthor.usecase.LoadCurrentAuthorUseCase
 import com.example.mylibrary.ui.books.addBook.AddBookViewModel
 import com.example.mylibrary.ui.books.addBook.usecase.AddNewBookUseCase
 import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.AuthorSelectViewModel
@@ -12,6 +14,8 @@ import com.example.mylibrary.ui.books.addBook.dialogAuthorSelect.usecase.AuthorS
 import com.example.mylibrary.ui.books.addBook.usecase.AddBookLoadAuthorListUseCase
 import com.example.mylibrary.ui.books.booksList.BookListViewModel
 import com.example.mylibrary.ui.books.booksList.usecase.LoadBookListUseCase
+import com.example.mylibrary.ui.books.detailBook.DetailBookViewModel
+import com.example.mylibrary.ui.books.detailBook.usecase.LoadCurrentBookUseCase
 import com.example.mylibrary.ui.start.StartViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -66,6 +70,24 @@ val viewModelModule = module {
         StartViewModel(
             useCaseSet = setOf(),
             get(globalRouter())
+        )
+    }
+    viewModel { (bookId: String)->
+        DetailBookViewModel(
+            useCaseSet = setOf(
+                get<LoadCurrentBookUseCase>()
+            ),
+            get(globalRouter()),
+            bookId
+        )
+    }
+    viewModel { (authorId: String)->
+        DetailAuthorViewModel(
+            useCaseSet = setOf(
+                get<LoadCurrentAuthorUseCase>()
+            ),
+            get(globalRouter()),
+            authorId
         )
     }
 }

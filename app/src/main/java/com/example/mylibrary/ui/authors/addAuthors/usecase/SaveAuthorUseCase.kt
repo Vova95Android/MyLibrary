@@ -19,7 +19,8 @@ class SaveAuthorUseCase(
                         fistName = state.fistName,
                         lastName = state.lastName,
                         dateOfBirth = state.dateOfBirth,
-                        genres = emptyList(),
+                        genres = state.genres.filter { !it.name.isNullOrEmpty() }
+                            .map { it.name ?: "" },
                         bookIds = emptyList()
                     )
                 )
